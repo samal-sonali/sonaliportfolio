@@ -1,0 +1,197 @@
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--nav-h);
+
+  // The blur lives on a pseudo-element: backdrop-filter on .nav itself would
+  // become the containing block for the fixed mobile menu.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.4s var(--ease), border-color 0.4s;
+  }
+
+  &.scrolled::before {
+    background: var(--glass);
+    backdrop-filter: saturate(160%) blur(18px);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+    border-bottom-color: var(--line);
+  }
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--gradient);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--gradient);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  text-transform: lowercase;
+  box-shadow: 0 8px 20px -8px rgba(217, 70, 122, 0.6);
+}
+
+.links {
+  display: flex;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--glass);
+
+  a {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition: color 0.25s, background-color 0.25s;
+
+    &:hover {
+      color: var(--ink);
+    }
+    &.active {
+      color: var(--ink);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: transform 0.3s var(--ease), border-color 0.3s;
+
+  &:hover {
+    transform: rotate(-12deg);
+    border-color: var(--line-strong);
+  }
+}
+
+.hire {
+  height: 44px;
+  padding: 0 20px;
+}
+
+.burger {
+  display: none;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 920px) {
+  .links,
+  .hire {
+    display: none;
+  }
+
+  .burger {
+    display: grid;
+  }
+
+  .mobile {
+    display: block;
+    position: fixed;
+    inset: var(--nav-h) 0 0;
+    background: var(--bg);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s var(--ease), visibility 0.35s;
+    overflow-y: auto;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      padding-block: 28px 40px;
+    }
+
+    a:not(.btn) {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: clamp(1.7rem, 7vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+    }
+
+    &.open a:not(.btn) {
+      opacity: 1;
+      transform: none;
+    }
+
+    .num {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0;
+    }
+
+    .btn {
+      margin-top: 32px;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-name {
+    display: none;
+  }
+}

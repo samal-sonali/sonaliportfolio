@@ -1,0 +1,77 @@
+<section id="work" class="section work">
+  <div class="container">
+    <div class="section-head" reveal>
+      <span class="eyebrow">Selected work</span>
+      <h2 class="section-title">Products I’ve <span class="serif gradient-text">helped build.</span></h2>
+      <p class="lead">Client and company projects, so the code isn’t public, but here’s what I built and how.</p>
+    </div>
+
+    <div class="grid">
+      @for (p of projects; track p.title; let i = $index) {
+        <article
+          class="project card"
+          [class.wide]="i === 0"
+          reveal
+          [revealDelay]="i * 100"
+          (pointermove)="tilt($event)"
+          (pointerleave)="reset($event)"
+        >
+          <div class="preview" [attr.data-mock]="p.mock" aria-hidden="true">
+            <div class="window">
+              <div class="bar"><i></i><i></i><i></i><span></span></div>
+
+              @switch (p.mock) {
+                @case ('dashboard') {
+                  <div class="dash">
+                    <aside><b></b><b></b><b></b><b></b><b></b></aside>
+                    <div class="main">
+                      <div class="kpis"><span></span><span></span><span></span></div>
+                      <div class="chart">
+                        @for (h of [42, 64, 38, 80, 56, 92, 70, 60]; track $index) {
+                          <em [style.height.%]="h"></em>
+                        }
+                      </div>
+                      <div class="rows"><span></span><span></span><span></span></div>
+                    </div>
+                  </div>
+                }
+                @case ('shop') {
+                  <div class="shop">
+                    @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+                      <div class="product"><span class="img"></span><span class="t"></span><span class="price"></span></div>
+                    }
+                    <div class="cart"><span>Cart</span><b>3</b></div>
+                  </div>
+                }
+                @case ('landing') {
+                  <div class="land">
+                    <span class="h"></span>
+                    <span class="h short"></span>
+                    <span class="btn-mock"></span>
+                    <div class="cols"><span></span><span></span><span></span></div>
+                  </div>
+                }
+              }
+            </div>
+          </div>
+
+          <div class="info">
+            <span class="kind">{{ p.kind }}</span>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.description }}</p>
+            <ul class="points">
+              @for (pt of p.points; track pt) {
+                <li>{{ pt }}</li>
+              }
+            </ul>
+            <div class="stack">
+              @for (s of p.stack; track s) {
+                <span class="chip">{{ s }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

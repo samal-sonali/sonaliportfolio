@@ -1,0 +1,92 @@
+<section id="top" class="hero">
+  <div class="bg" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="grid"></span>
+  </div>
+
+  <div class="container hero-inner">
+    <div class="copy">
+      <span class="status anim" style="--d: 0ms">
+        <span class="dot"></span> Open to new opportunities
+      </span>
+
+      <h1 class="title anim" style="--d: 80ms">
+        Hi, I’m {{ profile.firstName }}.<br />
+        I craft <span class="serif gradient-text">beautiful</span> interfaces for the web.
+      </h1>
+
+      <p class="role anim" style="--d: 160ms">
+        <span class="muted">I’m a</span>
+        <span class="typed">{{ typed() }}</span><span class="caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="intro anim" style="--d: 220ms">{{ profile.intro }}</p>
+
+      <div class="cta anim" style="--d: 300ms">
+        <a href="#work" class="btn btn-primary">View my work <app-icon name="arrow" [size]="18" /></a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+
+      <ul class="meta anim" style="--d: 380ms">
+        <li><app-icon name="pin" [size]="16" /> {{ profile.location }}</li>
+        <li>
+          <a [href]="profile.linkedin" target="_blank" rel="noopener">
+            <app-icon name="linkedin" [size]="16" /> LinkedIn
+          </a>
+        </li>
+        <li>
+          <a [href]="'mailto:' + profile.email"><app-icon name="mail" [size]="16" /> Email</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="visual anim" style="--d: 200ms">
+      <div class="frame">
+        <div class="ring" aria-hidden="true"></div>
+        <div class="photo">
+          <img
+            [src]="profile.photo"
+            [alt]="'Portrait of ' + profile.name"
+            width="900"
+            height="1174"
+            fetchpriority="high"
+          />
+        </div>
+
+        <div class="float f1">
+          <span class="f-icon a"><app-icon name="sparkle" [size]="18" /></span>
+          <div>
+            <strong>{{ years }}+ years</strong>
+            <small>Frontend experience</small>
+          </div>
+        </div>
+
+        <div class="float f2">
+          <span class="f-icon b"><app-icon name="code" [size]="18" /></span>
+          <div>
+            <strong>Angular</strong>
+            <small>&amp; modern JavaScript</small>
+          </div>
+        </div>
+
+        <div class="float f3">
+          <span class="stat">+20%</span>
+          <small>user engagement</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-label="Technologies">
+    <div class="track">
+      @for (_ of [0, 1]; track $index) {
+        <ul [attr.aria-hidden]="$index === 1 ? 'true' : null">
+          @for (item of marquee; track item) {
+            <li>{{ item }} <span class="star">✦</span></li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</section>

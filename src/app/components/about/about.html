@@ -1,0 +1,39 @@
+<section id="about" class="section">
+  <div class="container">
+    <div class="layout">
+      <div class="head" reveal>
+        <span class="eyebrow">About me</span>
+        <h2 class="section-title">
+          Turning designs into <span class="serif gradient-text">delightful</span>, dependable products.
+        </h2>
+      </div>
+
+      <div class="body">
+        @for (para of profile.about; track $index) {
+          <p reveal [revealDelay]="$index * 80" [class.first]="$index === 0">{{ para }}</p>
+        }
+
+        <div class="langs" reveal [revealDelay]="240">
+          <h3><app-icon name="globe" [size]="18" /> Languages</h3>
+          <ul>
+            @for (lang of profile.languages; track lang.name) {
+              <li>
+                <strong>{{ lang.name }}</strong>
+                <span>{{ lang.level }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      @for (s of stats; track s.label) {
+        <div class="stat card" reveal [revealDelay]="$index * 90">
+          <span class="value gradient-text">{{ s.value }}</span>
+          <span class="label">{{ s.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

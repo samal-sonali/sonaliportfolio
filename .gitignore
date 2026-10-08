@@ -1,4 +1,4 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
 /dist
@@ -9,7 +9,7 @@
 # Node
 /node_modules
 npm-debug.log
-package-lock.json
+yarn-error.log
 
 # IDEs and editors
 .idea/
@@ -26,6 +26,7 @@ package-lock.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/mcp.json
 .history/*
 
 # Miscellaneous
@@ -36,12 +37,8 @@ package-lock.json
 /libpeerconnection.log
 testem.log
 /typings
+__screenshots__/
 
 # System files
 .DS_Store
 Thumbs.db
-
-# Environment variables
-.env
-.env.local
-.env.*.local

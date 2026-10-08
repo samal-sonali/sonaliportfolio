@@ -1,0 +1,196 @@
+// The panel is always dark, in both themes, so it reads as the page's finale.
+.panel {
+  --p-ink: #f3f4f8;
+  --p-muted: #a3a9bd;
+  --p-line: rgba(255, 255, 255, 0.1);
+
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(32px, 5vw, 64px);
+  padding: clamp(28px, 6vw, 72px);
+  border-radius: clamp(24px, 3vw, 36px);
+  background: #10121b;
+  color: var(--p-ink);
+  border: 1px solid var(--p-line);
+  box-shadow: var(--shadow-lg);
+}
+
+.glow {
+  position: absolute;
+  width: 640px;
+  height: 640px;
+  right: -200px;
+  top: -260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240, 86, 143, 0.45), rgba(141, 139, 255, 0.2) 45%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.left,
+.form {
+  position: relative;
+}
+
+.eyebrow {
+  color: #ff8a65;
+}
+
+.section-title .serif {
+  display: block;
+  background: linear-gradient(120deg, #ff8a65, #f0568f 50%, #a5a3ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  color: var(--p-muted);
+  max-width: 460px;
+}
+
+.channels {
+  margin-top: 36px;
+  display: grid;
+  gap: 12px;
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--p-line);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  text-align: left;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.35s var(--ease);
+
+  &:not(.static):hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateX(4px);
+  }
+}
+
+.c-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 138, 101, 0.14);
+  color: #ff8a65;
+}
+
+.c-text {
+  min-width: 0;
+  flex: 1;
+
+  small {
+    display: block;
+    color: var(--p-muted);
+    font-size: 0.78rem;
+  }
+
+  strong {
+    display: block;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.c-end {
+  color: var(--p-muted);
+}
+
+/* ---------- Form ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(22px, 3vw, 32px);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--p-line);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  label span {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--p-muted);
+    margin-bottom: 6px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--p-line);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--p-ink);
+    font: inherit;
+    font-size: 16px; // prevents iOS zoom-on-focus
+    resize: vertical;
+    transition: border-color 0.25s, box-shadow 0.25s;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #ff8a65;
+      box-shadow: 0 0 0 4px rgba(255, 138, 101, 0.15);
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: #f87171;
+    }
+  }
+}
+
+.send {
+  margin-top: 4px;
+  background: linear-gradient(120deg, #ff7552, #f0568f 55%, #8d8bff);
+  color: #fff;
+  box-shadow: 0 14px 30px -12px rgba(240, 86, 143, 0.7);
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.hint {
+  text-align: center;
+  color: var(--p-muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+}

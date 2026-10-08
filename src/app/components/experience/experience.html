@@ -1,0 +1,46 @@
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-head" reveal>
+      <span class="eyebrow">Experience</span>
+      <h2 class="section-title">Where I’ve been <span class="serif gradient-text">making an impact.</span></h2>
+    </div>
+
+    <ol class="timeline">
+      @for (job of jobs; track job.company; let first = $first) {
+        <li class="item" reveal [revealDelay]="$index * 100">
+          <div class="when">
+            <span class="period">{{ job.period }}</span>
+            <span class="len">{{ job.length }}</span>
+            @if (first && !job.end) {
+              <span class="now"><span class="pulse"></span>Current</span>
+            }
+          </div>
+
+          <span class="marker" [class.current]="!job.end" aria-hidden="true">
+            <app-icon name="briefcase" [size]="16" />
+          </span>
+
+          <article class="card job">
+            <header>
+              <h3>{{ job.role }}</h3>
+              <p class="company">
+                {{ job.company }} <span class="sep">·</span> <span class="loc">{{ job.location }}</span>
+              </p>
+            </header>
+            <p class="summary">{{ job.summary }}</p>
+            <ul class="points">
+              @for (point of job.highlights; track $index) {
+                <li><app-icon name="check" [size]="16" />{{ point }}</li>
+              }
+            </ul>
+            <div class="stack">
+              @for (tech of job.stack; track tech) {
+                <span class="chip">{{ tech }}</span>
+              }
+            </div>
+          </article>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
